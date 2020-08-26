@@ -31,6 +31,7 @@ use OC\Files\FileInfo;
 use OC\Files\Storage\Wrapper\Quota;
 use OCA\DAV\Connector\Sabre\Directory;
 use OCP\Files\ForbiddenException;
+use OCP\Files\Mount\IMountPoint;
 
 class TestViewDirectory extends \OC\Files\View {
 
@@ -269,9 +270,12 @@ class DirectoryTest extends \Test\TestCase {
 	}
 
 	public function testGetQuotaInfoUnlimited() {
+		$mountPoint = $this->createMock(IMountPoint::class);
 		$storage = $this->getMockBuilder(Quota::class)
 			->disableOriginalConstructor()
 			->getMock();
+		$mountPoint->method('getStorage')
+			->willReturn($storage);
 
 		$storage->expects($this->any())
 			->method('instanceOfStorage')
@@ -300,9 +304,12 @@ class DirectoryTest extends \Test\TestCase {
 	}
 
 	public function testGetQuotaInfoSpecific() {
+		$mountPoint = $this->createMock(IMountPoint::class);
 		$storage = $this->getMockBuilder(Quota::class)
 			->disableOriginalConstructor()
 			->getMock();
+		$mountPoint->method('getStorage')
+			->willReturn($storage);
 
 		$storage->expects($this->any())
 			->method('instanceOfStorage')
