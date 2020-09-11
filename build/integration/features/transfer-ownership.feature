@@ -234,7 +234,7 @@ Feature: transfer-ownership
 			| uid_file_owner | user3 |
 			| share_with | group1 |
 
-	Scenario: transferring ownership does not transfer received shares
+	Scenario: transfering ownership does not transfer received shares
 		Given user "user0" exists
 		And user "user1" exists
 		And user "user2" exists
@@ -401,9 +401,6 @@ Feature: transfer-ownership
 			| uid_file_owner | user1 |
 			| share_with | user2 |
 
-<<<<<<< HEAD
-	Scenario: transfering ownership does not transfer received shares
-=======
 	Scenario: transferring ownership of path fails for reshares
 		Given user "user0" exists
 		And user "user1" exists
@@ -419,8 +416,7 @@ Feature: transfer-ownership
 		Then the command failed with exit code 1
 		And the command error output contains the text "Could not transfer files."
 
-	Scenario: transferring ownership does not transfer received shares
->>>>>>> 58d57b35ea... Add integration tests for transferring ownership of reshares
+	Scenario: transfering ownership does not transfer received shares
 		Given user "user0" exists
 		And user "user1" exists
 		And user "user2" exists
