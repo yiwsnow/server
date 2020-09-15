@@ -149,7 +149,7 @@ Feature: transfer-ownership
 			| uid_file_owner | test |
 			| share_with | test |
 
-	Scenario: transferring ownership of folder reshared with another user
+	Scenario: transfering ownership of folder reshared with another user
 		Given user "user0" exists
 		And user "user1" exists
 		And user "user2" exists
@@ -160,7 +160,7 @@ Feature: transfer-ownership
 		And user "user0" accepts last share
 		And folder "/test" of user "user0" is shared with user "user2" with permissions 31
 		And user "user2" accepts last share
-		When transferring ownership from "user0" to "user1"
+		When transfering ownership from "user0" to "user1"
 		And the command was successful
 		And As an "user2"
 		Then Downloaded content when downloading file "/test/somefile.txt" with range "bytes=0-6" should be "This is"
@@ -176,7 +176,7 @@ Feature: transfer-ownership
 			| uid_file_owner | user3 |
 			| share_with | user2 |
 
-	Scenario: transferring ownership of folder reshared with group to a user in the group
+	Scenario: transfering ownership of folder reshared with group to a user in the group
 		Given user "user0" exists
 		And user "user1" exists
 		And user "user2" exists
@@ -189,7 +189,7 @@ Feature: transfer-ownership
 		And user "user0" accepts last share
 		And folder "/test" of user "user0" is shared with group "group1" with permissions 31
 		And user "user1" accepts last share
-		When transferring ownership from "user0" to "user1"
+		When transfering ownership from "user0" to "user1"
 		And the command was successful
 		And As an "user1"
 		Then Downloaded content when downloading file "/test/somefile.txt" with range "bytes=0-6" should be "This is"
@@ -205,7 +205,7 @@ Feature: transfer-ownership
 			| uid_file_owner | user3 |
 			| share_with | group1 |
 
-	Scenario: transferring ownership of folder reshared with group to a user not in the group
+	Scenario: transfering ownership of folder reshared with group to a user not in the group
 		Given user "user0" exists
 		And user "user1" exists
 		And user "user2" exists
@@ -218,7 +218,7 @@ Feature: transfer-ownership
 		And user "user0" accepts last share
 		And folder "/test" of user "user0" is shared with group "group1" with permissions 31
 		And user "user2" accepts last share
-		When transferring ownership from "user0" to "user1"
+		When transfering ownership from "user0" to "user1"
 		And the command was successful
 		And As an "user2"
 		Then Downloaded content when downloading file "/test/somefile.txt" with range "bytes=0-6" should be "This is"
@@ -401,7 +401,7 @@ Feature: transfer-ownership
 			| uid_file_owner | user1 |
 			| share_with | user2 |
 
-	Scenario: transferring ownership of path fails for reshares
+	Scenario: transfering ownership of path fails for reshares
 		Given user "user0" exists
 		And user "user1" exists
 		And user "user2" exists
@@ -412,7 +412,7 @@ Feature: transfer-ownership
 		And user "user0" accepts last share
 		And folder "/test" of user "user0" is shared with user "user2" with permissions 31
 		And user "user2" accepts last share
-		When transferring ownership of path "test" from "user0" to "user1"
+		When transfering ownership of path "test" from "user0" to "user1"
 		Then the command failed with exit code 1
 		And the command error output contains the text "Could not transfer files."
 
