@@ -466,19 +466,22 @@ export default {
 			this.$set(this.loading, type, true)
 
 			if (this.cursors[type]) {
-				const request = await search({ type, query: this.query, cursor: this.cursors[type] })
+				const { request, cancel } = search({ type, query: this.query, cursor: this.cursors[type] })
+				this.requests.push(cancel)
+
+				const { data } = await request()
 
 				// Save cursor if any
-				if (request.data.ocs.data.cursor) {
-					this.$set(this.cursors, type, request.data.ocs.data.cursor)
+				if (data.ocs.data.cursor) {
+					this.$set(this.cursors, type, data.ocs.data.cursor)
 				}
 
-				if (request.data.ocs.data.entries.length > 0) {
-					this.results[type].push(...request.data.ocs.data.entries)
+				if (data.ocs.data.entries.length > 0) {
+					this.results[type].push(...data.ocs.data.entries)
 				}
 
 				// Check if we reached end of pagination
-				if (request.data.ocs.data.entries.length < this.defaultLimit) {
+				if (data.ocs.data.entries.length < this.defaultLimit) {
 					this.$set(this.reached, type, true)
 				}
 			} else
